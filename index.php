@@ -14,4 +14,31 @@
 </body>
 </html>
 
-<script></script>
+<script>
+				var group_chart_one = $('#pie_chart');
+
+				var graph_one = new Chart(group_chart_one, {
+					type:"pie",
+					data:chart_data
+				});
+
+				var group_chart_two = $('#doughnut_chart');
+
+				var graph2 = new Chart(group_chart_two, {
+					type:"bar",
+					data:chart_data
+                    options:options
+				});
+
+				var group_chart_three = $('#bar_chart');
+
+				var graph_three = new Chart(group_chart_three, {
+					type:'doughnut',
+					data:chart_data,
+				});
+			}
+		})
+	}
+
+});
+</script>
