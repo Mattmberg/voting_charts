@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-			<h2 class="text-center mt-4 mb-3">Favorite Color Survey!</a></h2>
+			<h2 class="text-center mt-4 mb-3">Favorite Color Survey!</h2>
 
 			<div class="card">
 				<div class="card-header">Color Choices</div>
