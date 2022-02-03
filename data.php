@@ -2,22 +2,21 @@
 $servername = "";
 $username = "";
 $password = "";
+$dbname = "";
 
-$connection = new mysqli($servername, $username, $password);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
-echo "Connected successfully";
+$connection = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 if(isset($_POST["action"]))
 {
 	if($_POST["action"] == 'insert')
 	{
 		$data = array(
+			':COLOR_COLUMN'		=>	$_POST["COLOR_COLUMN"]
 		);
 
 		$query = "
+		INSERT INTO VOTING_DB
+		(COLOR_COLUMN) VALUES (:COLOR_COLUMN)
 		";
 
 		$statement = $connection->prepare($query);
@@ -30,6 +29,9 @@ if(isset($_POST["action"]))
 	if($_POST["action"] == 'fetch')
 	{
 		$query = "
+		SELECT COLOR_COLUMN, COUNT(ID_COLUMN) AS Total 
+		FROM VOTING_DB
+		GROUP BY COLOR_COLUMN
 		";
 
 		$result = $connection->query($query);
@@ -39,6 +41,8 @@ if(isset($_POST["action"]))
 		foreach($result as $row)
 		{
 			$data[] = array(
+				'COLOR_COLUMN'		=>	$row["COLOR_COLUMN"],
+				'total'			=>	$row["Total"],
 			);
 		}
 
